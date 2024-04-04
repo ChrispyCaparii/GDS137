@@ -12,7 +12,7 @@ var player;
 	
 	//------Declare the Player's speed on the x and y axis------
 	player.vx = 10;
-	player.vy = 0;
+	player.vy = 10;
 	//----------------------------------------------------
 	
 	timer = setInterval(animate, interval);
@@ -32,7 +32,7 @@ function animate()
 
 		player.x=canvas.width;
 		player.x-=100 //Some number of pixels
-		player.vx = -player.vx;
+		player.vx = -player.vx - 10;
 		
 	}
 	///--------------Bounce of Left----------------------
@@ -41,8 +41,29 @@ function animate()
 
 		player.x=player.width/2;
 		
-		player.vx = -player.vx;
+		player.vx = -player.vx + 10;
 		
 	}
+
+	//--------------Bounce of Botom----------------------
+	if(player.y > canvas.height - player.width/2)
+	{
+
+		player.y=canvas.height;
+		player.y-=100 //Some number of pixels
+		player.vy = -player.vy - 20;
+		
+	}
+
+//--------------Bounce of Top----------------------
+	if(player.y < 0 + player.width/2)
+	{	
+
+		player.y=player.width/2;
+		
+		player.vy = -player.vy + 20;
+		
+	}
+
 	player.draw();
 }
