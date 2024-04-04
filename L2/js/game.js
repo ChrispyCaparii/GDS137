@@ -13,6 +13,11 @@ var player;
 	
 	//Instantiate the Player
 	player = new GameObject();
+	player.width = 30
+	player.height = 150
+	player.x = player.width/2;
+	player.y = player.height/2;
+
 
 	//Set the Animation Timer
 	timer = setInterval(animate, interval);
@@ -35,7 +40,33 @@ function animate()
 		player.y += -10;
 	}
 	
+
+//--------------Bounce of Botom----------------------
+if(player.y > canvas.height - player.height/2)
+{
+
+	player.y=canvas.height - player.height/2;
+	
+	
+	
+}
+
+//--------------Bounce of Top----------------------
+if(player.y < 0 + player.height/2)
+{	
+
+	player.y=player.height/2;
+	
+	
+	
+}
+
+
+
 	//Update the Screen
 	player.drawRect();
+
+	
 }
+
 
