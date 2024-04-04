@@ -24,12 +24,12 @@ function animate()
 	
 	
 	//Move the Player to the right
-	if(d)
+	if(s)
 	{
 		console.log("Moving Right");
 		player.y += 10;
 	}
-	if(a)
+	if(w)
 	{
 		console.log("Moving Left");
 		player.y += -10;
