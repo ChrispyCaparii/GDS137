@@ -23,7 +23,7 @@ function animate()
 	context.clearRect(0,0,canvas.width, canvas.height);	
 	
 	//Move the Player
-	player.x += 2;
+	player.x += 200;
 	
 	//Update the Screen
 	player.draw();

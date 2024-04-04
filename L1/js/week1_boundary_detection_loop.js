@@ -11,7 +11,7 @@ var player;
 	player = new Player();
 	
 	//------Declare the Player's speed on the x and y axis------
-	player.vx = 2;
+	player.vx = 100;
 	player.vy = 0;
 	//----------------------------------------------------
 	
@@ -26,6 +26,9 @@ function animate()
 	//--------------Loop the Screen----------------------
 	if(player.x > canvas.width + player.width/2)
 	{
+		player.x=canvas.width;
+		player.x-=50 //Some number of pixels
+		player.vx = -ball.vx;
 		player.x = -player.width/2	
 	}
 	//---------------------------------------------------
