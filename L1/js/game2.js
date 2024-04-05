@@ -4,15 +4,15 @@ var canvas;
 var context;
 var timer;
 var interval = 1000/60;
-var player;
+var ball;
 
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");	
-	player = new Player();
+	ball = new Player();
 	
-	//------Declare the Player's speed on the x and y axis------
-	player.vx = 10;
-	player.vy = 10;
+	//------Declare the ball's speed on the x and y axis------
+	ball.vx = 10;
+	ball.vy = 10;
 	//----------------------------------------------------
 	
 	timer = setInterval(animate, interval);
@@ -22,48 +22,48 @@ function animate()
 {
 	context.clearRect(0,0,canvas.width, canvas.height);	
 	
-	//----Movement Using the Player's move() function----
-	player.move();
+	//----Movement Using the ball's move() function----
+	ball.move();
 	//---------------------------------------------------
 	
 	//--------------Bounce of Right----------------------
-	if(player.x > canvas.width - player.width/2)
+	if(ball.x > canvas.width - ball.width/2)
 	{
 
-		player.x=canvas.width;
-		player.x-=100 //Some number of pixels
-		player.vx = -player.vx - 10;
+		ball.x=canvas.width;
+		ball.x-=100 //Some number of pixels
+		ball.vx = -ball.vx - 10;
 		
 	}
 	///--------------Bounce of Left----------------------
-	if(player.x < 0 + player.width/2)
+	if(ball.x < 0 + ball.width/2)
 	{	
 
-		player.x=player.width/2;
+		ball.x=ball.width/2;
 		
-		player.vx = -player.vx + 10;
+		ball.vx = -ball.vx + 10;
 		
 	}
 
 	//--------------Bounce of Botom----------------------
-	if(player.y > canvas.height - player.width/2)
+	if(ball.y > canvas.height - ball.width/2)
 	{
 
-		player.y=canvas.height;
-		player.y-=100 //Some number of pixels
-		player.vy = -player.vy - 20;
+		ball.y=canvas.height;
+		ball.y-=100 //Some number of pixels
+		ball.vy = -ball.vy - 20;
 		
 	}
 
 //--------------Bounce of Top----------------------
-	if(player.y < 0 + player.width/2)
+	if(ball.y < 0 + ball.width/2)
 	{	
 
-		player.y=player.width/2;
+		ball.y=ball.width/2;
 		
-		player.vy = -player.vy + 20;
+		ball.vy = -ball.vy + 20;
 		
 	}
 
-	player.draw();
+	ball.draw();
 }
