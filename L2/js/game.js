@@ -26,8 +26,8 @@ var ball;
 	ball = new GameObject();
 	ball.width = 50
 	ball.height = 50
-	ball.vx = 10;
-	ball.vy = 10;
+	ball.vx = -10;
+	ball.vy = 0;
 	ball.color = "#1100ff";
 
 
@@ -92,6 +92,9 @@ ball.move();
 if(ball.x > canvas.width - ball.width/2)
 {
 
+	//ball.y=canvas.height/2;
+	//ball.x=canvas.width/2;
+	
 	ball.x=canvas.width;
 	ball.x-=ball.width/2 //Some number of pixels
 	ball.vx = -ball.vx 
@@ -101,15 +104,19 @@ if(ball.x > canvas.width - ball.width/2)
 if(ball.x < 0 + ball.width/2)
 {	
 
-	ball.x=ball.width/2;
+	ball.y=canvas.height/2;
+	ball.x=canvas.width/2;
 	
-	ball.vx = -ball.vx 
+	//ball.x=ball.width/2;
+	//ball.vx = -ball.vx 
 	
 }
 
 //--------------Bounce of Botom----------------------
 if(ball.y > canvas.height - ball.width/2)
 {
+	//ball.y=canvas.height/2;
+	//ball.x=canvas.width/2;
 
 	ball.y=canvas.height;
 	ball.y-=ball.width/2//Some number of pixels
@@ -121,6 +128,9 @@ if(ball.y > canvas.height - ball.width/2)
 if(ball.y < 0 + ball.width/2)
 {	
 
+	//ball.y=canvas.height/2;
+	//ball.x=canvas.width/2;
+
 	ball.y=ball.width/2;
 	
 	ball.vy = -ball.vy 
@@ -128,47 +138,20 @@ if(ball.y < 0 + ball.width/2)
 }
 
 // ----------------------End of Ball Code--------------------------------
-//Update the Screen
 
 
-	//Check Collisions
-	
-	//Demonstrates Accuracy of Bounding Box Collision
+// ----------------------Start of Collision Code--------------------------------	
 	if(ball.hitTestObject(player))
 	{
-		//change color
-		ball.color = "yellow";
+		ball.vx = -ball.vx
 	}
 	else
 	{
-		ball.color = "#00ff00";
+		ball.vx = ball.vx;
 	}
 	
-	//Shows Bounding Boxes
-	if(ball.hitTestObject(player))
-	{
-		//draw bounding boxes
-		context.strokeRect(ball.x- ball.width/2, ball.y - ball.height/2, ball.width, ball.height)
-		context.strokeRect(player.x- player.width/2, player.y - player.height/2, player.width, player.height)
-	}
 	
-	//Demonstrates how often collisions take place
-	if(ball.hitTestObject(player))
-	{
-		console.log("colliding");
-	}
-	
-	//Impede movement
-	if(ball.hitTestObject(player))
-	{
-		player.x = prevX;
-		console.log("colliding");
-	}
-	else
-	{
-		prevX = player.x;
-	}
-	
+	// ----------------------End of Collision Code--------------------------------	
 
 	//Update the Screen
 	player.drawRect();
