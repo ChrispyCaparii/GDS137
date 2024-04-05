@@ -144,8 +144,8 @@ if(ball.y < 0 + ball.width/2)
 	if(ball.hitTestObject(player))
 	{	
 		ball.vx = -ball.vx 
-		//ball.x = ball.width;
-		
+		ball.x = player.x + ball.width/2  + ball.width/4;
+
 
 		//top
 		if(ball.y < player.y - player.height/6)
