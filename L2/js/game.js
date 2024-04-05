@@ -142,13 +142,27 @@ if(ball.y < 0 + ball.width/2)
 
 // ----------------------Start of Collision Code--------------------------------	
 	if(ball.hitTestObject(player))
-	{
-		ball.vx = -ball.vx
+	{	
+		ball.vx = -ball.vx 
+		
+
+		//top
+		if(ball.y < player.y - player.height/6)
+		{
+			
+			ball.vy = -10
+		}
+
+		
+
+		//bottom
+		if(ball.y > player.y - player.height/6)
+		{
+			
+			ball.vy = +10
+		}
 	}
-	else
-	{
-		ball.vx = ball.vx;
-	}
+	
 	
 	
 	// ----------------------End of Collision Code--------------------------------	
