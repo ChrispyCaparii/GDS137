@@ -101,7 +101,7 @@ if(ball.x > canvas.width - ball.width/2)
 	
 }
 ///--------------Bounce of Left----------------------
-if(ball.x < 0 + ball.width/2)
+if(ball.x < 0 - ball.width/2)
 {	
 
 	ball.y=canvas.height/2;
@@ -144,6 +144,7 @@ if(ball.y < 0 + ball.width/2)
 	if(ball.hitTestObject(player))
 	{	
 		ball.vx = -ball.vx 
+		//ball.x = ball.width;
 		
 
 		//top
