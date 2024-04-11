@@ -6,6 +6,7 @@ var timer;
 //1000 ms or 1 second / FPS
 var interval = 1000/60;
 var player;
+var player2;
 var ball;
 
 	//Set Up the Canvas
@@ -19,7 +20,13 @@ var ball;
 	player.x = player.width/2;
 	player.y = player.height/2;
 
-
+	//Instantiate Player 2
+	player2 = new GameObject();
+	player2.width = 30
+	player2.height = 150
+	player2.x = canvas.width-player2.width/2;
+	player2.y = canvas.height-player2.height/2;
+	player2.color = "#00FF00";
 
 
 
@@ -45,7 +52,7 @@ function animate()
 	//Erase the Screen
 	context.clearRect(0,0,canvas.width, canvas.height);	
 	
-	// ----------------------Start of Player Code--------------------------------
+	// ----------------------Start of Player 1 Code--------------------------------
 	
 	//Move the Player to the right
 	if(s)
@@ -79,8 +86,46 @@ if(player.y < 0 + player.height/2)
 	
 	
 }
-// ----------------------End of Player Code--------------------------------
 
+// ----------------------End of Player 1 Code--------------------------------
+
+
+// ----------------------Start of Player 2 Code--------------------------------
+	
+	//Move the Player to the right
+	if(l)
+	{
+		console.log("Moving Right");
+		player2.y += 20;
+	}
+	if(p)
+	{
+		console.log("Moving Left");
+		player2.y += -20;
+	}
+	
+
+//--------------Bounce of Botom----------------------
+if(player2.y > canvas.height - player2.height/2)
+{
+
+	player2.y=canvas.height - player2.height/2;
+	
+	
+	
+}
+
+//--------------Bounce of Top----------------------
+if(player2.y < 0 + player2.height/2)
+{	
+
+	player2.y=player2.height/2;
+	
+	
+	
+}
+
+// ----------------------End of Player 2 Code--------------------------------
 
 
 // ----------------------Start of Ball Code--------------------------------
@@ -165,12 +210,38 @@ if(ball.y < 0 + ball.width/2)
 		}
 	}
 	
+
+
+	if(ball.hitTestObject(player2))
+	{	
+		ball.vx = -ball.vx 
+		ball.x = player2.x - ball.width/2  - ball.width/4;
+
+
+		//top
+		if(ball.y < player2.y - player2.height/6)
+		{
+			
+			ball.vy = -10
+		}
+
+		
+
+		//bottom
+		if(ball.y > player2.y - player2.height/6)
+		{
+			
+			ball.vy = +10
+		}
+	}
+	
 	
 	
 	// ----------------------End of Collision Code--------------------------------	
 
 	//Update the Screen
 	player.drawRect();
+	player2.drawRect();
 	ball.drawCircle();
 }
 
