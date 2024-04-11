@@ -9,9 +9,17 @@ var player;
 var player2;
 var ball;
 
+
+var p1Wins = 0;
+var p2Wins = 0;
+
+
+
+
 	//Set Up the Canvas
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");	
+
 	
 	//Instantiate Player 1
 	player = new GameObject();
@@ -57,12 +65,12 @@ function animate()
 	//Move the Player to the right
 	if(s)
 	{
-		console.log("Moving Right");
+		//console.log("Moving Right");
 		player.y += 20;
 	}
 	if(w)
 	{
-		console.log("Moving Left");
+		//console.log("Moving Left");
 		player.y += -20;
 	}
 	
@@ -95,12 +103,12 @@ if(player.y < 0 + player.height/2)
 	//Move the Player to the right
 	if(l)
 	{
-		console.log("Moving Right");
+		//console.log("Moving Right");
 		player2.y += 20;
 	}
 	if(p)
 	{
-		console.log("Moving Left");
+		//console.log("Moving Left");
 		player2.y += -20;
 	}
 	
@@ -138,12 +146,13 @@ ball.move();
 if(ball.x > canvas.width - ball.width/2)
 {
 
-	//ball.y=canvas.height/2;
-	//ball.x=canvas.width/2;
+	ball.y=canvas.height/2;
+	ball.x=canvas.width/2;
+	p1Wins = p1Wins + 1;
 	
-	ball.x=canvas.width;
-	ball.x-=ball.width/2 //Some number of pixels
-	ball.vx = -ball.vx 
+	//ball.x=canvas.width;
+	//ball.x-=ball.width/2 //Some number of pixels
+	//ball.vx = -ball.vx 
 	
 }
 ///--------------Bounce of Left----------------------
@@ -152,6 +161,7 @@ if(ball.x < 0 - ball.width/2)
 
 	ball.y=canvas.height/2;
 	ball.x=canvas.width/2;
+	p2Wins = p2Wins + 1;
 	
 	//ball.x=ball.width/2;
 	//ball.vx = -ball.vx 
@@ -240,9 +250,15 @@ if(ball.y < 0 + ball.width/2)
 	// ----------------------End of Collision Code--------------------------------	
 
 	//Update the Screen
+
+	context.font = "20px Arial ";
+	context.fillText("P1: " + p1Wins + "||" + "P2: " + p2Wins, canvas.width/2 - 20, canvas.height/10 - 20)
+
+
 	player.drawRect();
 	player2.drawRect();
 	ball.drawCircle();
+	
 }
 
 

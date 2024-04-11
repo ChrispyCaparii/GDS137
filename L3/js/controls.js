@@ -48,7 +48,7 @@ function release(e)
 	{
 		s = false;
 	}
-
+	
 	if(e.keyCode == 80)
 	{
 		p = false;
