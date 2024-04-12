@@ -251,13 +251,35 @@ if(ball.y < 0 + ball.width/2)
 
 	//Update the Screen
 
+
+//-------Net Code------------------------
+	context.save();
+	context.strokeStyle = "#FFFF00";
+	context.beginPath();
+	context.moveTo(512,0);
+	context.lineTo(canvas.width/2, canvas.height);
+	context.closePath();
+	context.lineWidth = 10;
+	context.stroke();
+	context.restore(); 
+	
+//-------Net Code------------------------
+
+
+
+//-------Score Code------------------------
 	context.font = "20px Arial ";
-	context.fillText("P1: " + p1Wins + "||" + "P2: " + p2Wins, canvas.width/2 - 20, canvas.height/10 - 20)
+	context.fillText("P1: " + p1Wins + "||" + "P2: " + p2Wins, 512, 20)
+//-------Score Code------------------------
 
 
+
+
+//-------Objects Code------------------------
 	player.drawRect();
 	player2.drawRect();
 	ball.drawCircle();
+//-------Objects Code------------------------
 	
 }
 
