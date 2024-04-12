@@ -13,6 +13,8 @@ var ball;
 var p1Wins = 0;
 var p2Wins = 0;
 
+var img;
+
 
 
 
@@ -48,6 +50,7 @@ var p2Wins = 0;
 
 
 
+	var img=document.getElementById("ric");
 	
 
 
@@ -279,6 +282,7 @@ if(ball.y < 0 + ball.width/2)
 	player.drawRect();
 	player2.drawRect();
 	ball.drawCircle();
+	context.drawImage(img, ball.x-30, ball.y-30, ball.width+10, ball.height+10);
 //-------Objects Code------------------------
 	
 }
