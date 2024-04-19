@@ -12,7 +12,7 @@ var score = 0;
 
 
 //---------------Set Friction and Gravity-----------------
-var frictionX = .85;	
+var frictionX = .98;	
 var frictionY = .97;
 var gravity = 1;
 //--------------------------------------------------------
@@ -25,19 +25,20 @@ var gravity = 1;
 	
 	//Instantiate Player 1
 	player = new GameObject();
-	player.width = 300
-	player.height = 30
+	player.width = 250
+	player.height = 40
 	player.x = canvas.width;
 	player.y = canvas.height-50;
-	player.force = 2;
+	player.color = "#00ffff"
+	player.force = 1;
 	
 
 	//Initiate the Ball
 	ball = new GameObject();
-	ball.width = 50
-	ball.height = 50
-	ball.color = "#1100ff";
-	ball.force = 2;
+	ball.width = 40
+	ball.height = 40
+	ball.color = "#ff00ff";
+	ball.force = 5;
 
 
 
@@ -220,12 +221,12 @@ if(ball.y < 0 + ball.width/2)
 
 	//-------Net Code------------------------
 	context.save();
-	context.strokeStyle = "#FFFF00";
+	context.strokeStyle = "#000000";
 	context.beginPath();
 	context.moveTo(player.x, player.y);
 	context.lineTo(ball.x, ball.y);
 	context.closePath();
-	context.lineWidth = 10;
+	context.lineWidth = 1;
 	context.stroke();
 	context.restore(); 
 	
