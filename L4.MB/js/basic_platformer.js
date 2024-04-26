@@ -12,6 +12,9 @@ var player;
 
 	player = new GameObject({x:100, y:canvas.height/2-100});
 
+
+
+
 	platform0 = new GameObject();
 		platform0.width = 200;
 		platform0.x = platform0.width/2;
