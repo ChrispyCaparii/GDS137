@@ -78,8 +78,8 @@ function animate()
 	for(var i = 0; i < amt; i++)
 	{
 		particles[i].drawRect();
-		//dots[i].vy += gravity;
-		//dots[i].move();
+		//particles	[i].vy += gravity;
+		//particles[i].move();
 	}
 	
 	//----------------------------------------------------------------------------------------------------------------------
