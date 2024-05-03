@@ -104,7 +104,7 @@ function animate()
 	
 	
 	
-	for(var i = 0; i < amount; i++)
+	for(var i = 0; i < platform.length; i++)
 {
 	while(platform[i].hitTestPoint(player.bottom()) && player.vy >=0)
 	{
