@@ -14,38 +14,39 @@ var player;
 		player.width = 50;
 		player.height = 50;
 
+	var platform = []
 
-	platform0 = new GameObject();
-		platform0.width = 200;
-		platform0.x = platform0.width/2;
-		platform0.y = canvas.height - platform0.height/2;
-		platform0.color = "#66ff33";
+	platform[0] = new GameObject();
+		platform[0].width = 200;
+		platform[0].x = platform[0].width/2;
+		platform[0].y = canvas.height - platform[0].height/2;
+		platform[0].color = "#66ff33";
 
-	platform1 = new GameObject();
-		platform1.width = 200;
-		platform1.x = platform0.x + platform0.width*2;
-		platform1.y = canvas.height - 100;
-		platform1.color = "#66ff33";
+	platform[1] = new GameObject();
+		platform[1].width = 200;
+		platform[1].x = platform[0].x + platform[0].width*2;
+		platform[1].y = canvas.height - 100;
+		platform[1].color = "#66ff33";
 
 
-	platform2 = new GameObject();
-		platform2.width = 400;
-		platform2.x = canvas.width/2 + canvas.width/4;
-		platform2.y = canvas.height/2 - canvas.height/6; 
-		platform2.color = "#66ff33";
+	platform[2] = new GameObject();
+		platform[2].width = 400;
+		platform[2].x = canvas.width/2 + canvas.width/4;
+		platform[2].y = canvas.height/2 - canvas.height/6; 
+		platform[2].color = "#66ff33";
 
 
 	enemy = new GameObject();
 		enemy.width = 50;
 		enemy.height = 50;
 		enemy.color = "#0000FF";
-		enemy.x = platform2.x;
-		enemy.y = platform2.y/2;
+		enemy.x = platform[2].x;
+		enemy.y = platform[2].y/2;
 		enemy.vx = 2;
 
 	portal1 = new GameObject({width:24, height:50, x:canvas.width-50, y:100, color:"#800080"});
-		portal1.x = platform1.x;
-		portal1.y = platform1.y-100;
+		portal1.x = platform[1].x;
+		portal1.y = platform[1].y-100;
 
 	portal2 = new GameObject({width:24, height:50, x:canvas.width-50, y:100, color:"#800080"});
 		portal2.x = canvas.width/2 + canvas.width/4;
@@ -102,110 +103,68 @@ function animate()
 
 	
 	
-
-	while(platform0.hitTestPoint(player.bottom()) && player.vy >=0)
-	{
-		player.y--;
-		player.vy = 0;
-		player.canJump = true;
-	}
-	while(platform0.hitTestPoint(player.left()) && player.vx <=0)
-	{
-		player.x++;
-		player.vx = 0;
-	}
-	while(platform0.hitTestPoint(player.right()) && player.vx >=0)
-	{
-		player.x--;
-		player.vx = 0;
-	}
-	while(platform0.hitTestPoint(player.top()) && player.vy <=0)
-	{
-		player.y++;
-		player.vy = 0;
-	}
 	
-	
-	//---------Objective: Treasure!!!!!!!---------------------------------------------------------------------------------------------------- 
-	//---------Run this program first.
-	//---------Get Creative. Find a new way to get your player from the platform to the pearl. 
-	//---------You can do anything you would like except break the following rules:
-	//---------RULE1: You cannot spawn your player on the pearl!
-	//---------RULE2: You cannot change the innitial locations of platform0 or the goal! 
-
-
-
-
-	while(platform1.hitTestPoint(player.bottom()) && player.vy >=0)
+	for(var i = 0; i < amount; i++)
+{
+	while(platform[i].hitTestPoint(player.bottom()) && player.vy >=0)
 	{
 		player.y--;
 		player.vy = 0;
 		player.canJump = true;
 	}
-	while(platform1.hitTestPoint(player.left()) && player.vx <=0)
-	{
-		player.x++;
-		player.vx = 0;
-	}
-	while(platform1.hitTestPoint(player.right()) && player.vx >=0)
-	{
-		player.x--;
-		player.vx = 0;
-	}
-	while(platform1.hitTestPoint(player.top()) && player.vy <=0)
-	{
-		player.y++;
-		player.vy = 0;
-	}
-
-
-
-
-	while(platform2.hitTestPoint(player.bottom()) && player.vy >=0)
+	while(platform[i].hitTestPoint(player.bottomleft()) && player.vy >=0)
 	{
 		player.y--;
 		player.vy = 0;
 		player.canJump = true;
 	}
-	while(platform2.hitTestPoint(player.left()) && player.vx <=0)
+	while(platform[i].hitTestPoint(player.bottomright()) && player.vy <=0)
+	{
+		player.y--;
+		player.vy = 0;
+		player.canJump = true;
+	}
+	while(platform[i].hitTestPoint(player.left()) && player.vx <=0)
 	{
 		player.x++;
 		player.vx = 0;
 	}
-	while(platform2.hitTestPoint(player.right()) && player.vx >=0)
+	while(platform[i].hitTestPoint(player.right()) && player.vx >=0)
 	{
 		player.x--;
 		player.vx = 0;
 	}
-	while(platform2.hitTestPoint(player.top()) && player.vy <=0)
+	while(platform[i].hitTestPoint(player.top()) && player.vy <=0)
 	{
 		player.y++;
 		player.vy = 0;
 	}
-
-
-
-	while(platform2.hitTestPoint(enemy.bottom()) && enemy.vy >=0)
+	while(platform[i].hitTestPoint(enemy.bottom()) && enemy.vy >=0)
 	{
 		enemy.y--;
 		enemy.vy = 0;
 
-		if(enemy.x >= platform2.x + platform2.width/2 - 20)
+		if(enemy.x >= platform[i].x + platform[i].width/2 - 20)
 		{
 			enemy.vx = -2;
 		}
 			
 
 		
-		if(enemy.x <= platform2.x - platform2.width/2 + 20)
+		if(enemy.x <= platform[i].x - platform[i].width/2 + 20)
 		{
 			enemy.vx = 2;
 		}
 		
 	}
-
-
-
+}
+	
+	//---------Objective: Treasure!!!!!!!---------------------------------------------------------------------------------------------------- 
+	//---------Run this program first.
+	//---------Get Creative. Find a new way to get your player from the platform to the pearl. 
+	//---------You can do anything you would like except break the following rules:
+	//---------RULE1: You cannot spawn your player on the pearl!
+	//---------RULE2: You cannot change the innitial locations of platform[0] or the goal! 
 
 
 
@@ -249,9 +208,9 @@ function animate()
 
 	
 	
-	platform0.drawRect();
-	platform1.drawRect();
-	platform2.drawRect();
+	platform[0].drawRect();
+	platform[1].drawRect();
+	platform[2].drawRect();
 
 	//Show hit points
 	player.drawRect();
