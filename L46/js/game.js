@@ -164,6 +164,10 @@ for(var p = 0; p < ball.length; p++)
 
 		ball[p].drawCircle();
 
+
+
+		
+
 		if(ball[p].hitTestObject(player))
 		{
 			ball[p].x = Math.random() * canvas.width;
@@ -173,6 +177,22 @@ for(var p = 0; p < ball.length; p++)
 			player.color = "#FF0000";
 			
 			score = 0;
+
+
+
+			for(var p = 0; p < square.length; p++)
+				{
+
+					ball[p].x = Math.random() * canvas.width;
+				ball[p].y = 10;
+				square[p].x = Math.random() * canvas.width;
+				square[p].y = 10;
+				player.color = "#FF0000";
+			
+				score = 0;
+
+				}
+
 
 		}
 
@@ -187,7 +207,7 @@ for(var p = 0; p < ball.length; p++)
 
 
 
-	for(var p = 0; p < ball.length; p++)
+	for(var p = 0; p < square.length; p++)
 		{	
 			square[p].x += square[p].vx;
 			square[p].y += square[p].vy;
@@ -210,6 +230,8 @@ for(var p = 0; p < ball.length; p++)
 				player.color = "#00FF00";
 				score = score + 1;
 				setTimeout(() => {  player.color = "#ffff00"; }, 1000);
+
+				
 			
 	
 			}
