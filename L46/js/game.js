@@ -49,7 +49,7 @@ var gravity = 1;
 		ball[i].color = "#FF0000"
 	
 		ball[i].x = Math.random() * canvas.width;
-		ball[i].y = Math.random() * canvas.height;
+		ball[i].y = canvas.height;
 		ball[i].vy = Math.random() * 10 + 5;
 	}
 	
@@ -68,7 +68,7 @@ var gravity = 1;
 		square[i].color = "#00FF00"
 	
 		square[i].x = Math.random() * canvas.width;
-		square[i].y = Math.random() * canvas.height;
+		square[i].y = canvas.height;
 		square[i].vy = Math.random() * 10 + 5;
 	}
 
@@ -167,10 +167,12 @@ for(var p = 0; p < ball.length; p++)
 		if(ball[p].hitTestObject(player))
 		{
 			ball[p].x = Math.random() * canvas.width;
-			ball[p].y = Math.random() * canvas.height;
+			ball[p].y = 10;
+			square[p].x = Math.random() * canvas.width;
+			square[p].y = 10;
 			player.color = "#FF0000";
 			
-			score = score - 1;
+			score = 0;
 
 		}
 
@@ -192,7 +194,7 @@ for(var p = 0; p < ball.length; p++)
 				
 			
 			
-			if (square[p].y > canvas.height)
+			if (square[p].y > canvas.height )
 			{
 				square[p].y = 10;
 				square[p].x += square[p].vx;
@@ -204,7 +206,7 @@ for(var p = 0; p < ball.length; p++)
 			if(square[p].hitTestObject(player))
 			{
 				square[p].x = Math.random() * canvas.width;
-				square[p].y = Math.random() * canvas.height;
+				square[p].y = 10;
 				player.color = "#00FF00";
 				score = score + 1;
 				setTimeout(() => {  player.color = "#ffff00"; }, 1000);
