@@ -48,13 +48,6 @@ function animate()
 		particles[p].x += particles[p].vx;
 		particles[p].y += particles[p].vy;
 			
-		//-------------------------------------------------INSTRUCTIONS----------------------------------------------------------
-			//If a particle moves off the bottom of the screen do the following:
-			//	1. reset it's y to the top of the screen - its height
-			//	2. re-calculate it's vy to be a random number between 5 and 15
-			//  3. reset its color randomly to one of the colors in the "colors" array
-			//     (Hint: The code to do this is already written above)
-		//-------------------------------------------------------------------------------------------------------------------------
 		
 		if (particles[p].y > canvas.height)
 		{

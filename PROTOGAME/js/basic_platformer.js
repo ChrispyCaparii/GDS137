@@ -10,6 +10,8 @@ var player;
 
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");	
+	//canvas.addEventListener("mousemove", track);
+	//canvas.addEventListener("click", startGame);
 
 
 	
@@ -19,6 +21,33 @@ var player;
 	player = new GameObject({x:100, y:canvas.height/2-100});
 		player.width = 50;
 		player.height = 50;
+
+
+	var playbutton = new GameObject({x:canvas.width/2, y:canvas.height/2})
+		playbutton.width = 200;
+		playbutton.height = 150;
+		playbutton.color = "black";
+	
+
+
+		var amount = 25;
+		var particles = [];
+		var colors = ["white", "#88ff88"];
+		
+		
+		for(var i = 0; i < amount; i++)
+		{
+			particles[i] = new GameObject({width:10, height:10});
+			
+			var randomColor = Math.round(Math.random());
+			particles[i].color = colors[randomColor]
+		
+			particles[i].x = Math.random() * canvas.width;
+			particles[i].y = Math.random() * canvas.height;
+			particles[i].vy = Math.random() * 10 + 5;
+		}
+
+		
 
 	var platform = [];	
 
@@ -69,7 +98,7 @@ var player;
 
 	interval = 1000/60;
 	timer = setInterval(animate, interval);
-var state = game;
+	var state = menu;
 
 function game()
 {
@@ -95,6 +124,11 @@ function game()
 		
 		player.x += Math.round(player.vx);
 		player.y += Math.round(player.vy);
+
+		if (player.y >= 801)
+			{
+				state = end;
+			}
 	
 	
 		//enemy.vx *= fX;
@@ -201,6 +235,29 @@ function game()
 			state = end;
 		}
 		
+	context.save();
+	context.fillStyle = "black";
+	context.fillRect (0, 0, 1000, 800);
+	context.restore();
+
+	for(var p = 0; p < particles.length; p++)
+		{	
+			particles[p].x += particles[p].vx;
+			particles[p].y += particles[p].vy;
+				
+			
+			if (particles[p].y > canvas.height)
+			{
+				particles[p].y = 10;
+				particles[p].x += particles[p].vx;
+				particles[p].y += particles[p].vy;
+			}
+	
+			particles[p].drawRect();
+	
+	
+			
+		}
 	
 		
 		
@@ -223,12 +280,35 @@ function end()
 {
 
 	context.save();
-		context.fillStyle = "black";
-		context.font = "bold 58px Arial"
-		context.textAlign = "center";
-		context.fillRect(0, canvas.height/2-100,canvas.width, 200);
-		context.fillStyle = "white";
-		context.fillText("You Lose", canvas.width/2, canvas.height/2+78/4)
+	context.fillStyle = "black";
+	context.fillRect (0, 0, 1000, 800);
+	context.restore();
+
+	for(var p = 0; p < particles.length; p++)
+		{	
+			particles[p].x += particles[p].vx;
+			particles[p].y += particles[p].vy;
+				
+			
+			if (particles[p].y > canvas.height)
+			{
+				particles[p].y = 10;
+				particles[p].x += particles[p].vx;
+				particles[p].y += particles[p].vy;
+			}
+	
+			particles[p].drawRect();
+	
+	
+			
+		}
+
+
+	context.save();	
+	context.font = "bold 58px Arial"
+	context.textAlign = "center";
+	context.fillStyle = "white";
+	context.fillText("You LOSE!", canvas.width/2, canvas.height/2+78/4)
 	context.restore();
 
 
@@ -238,13 +318,37 @@ function end()
 function win()
 {
 
+	
 	context.save();
-		context.fillStyle = "black";
-		context.font = "bold 58px Arial"
-		context.textAlign = "center";
-		context.fillRect(0, canvas.height/2-100,canvas.width, 200);
-		context.fillStyle = "white";
-		context.fillText("You WIN!", canvas.width/2, canvas.height/2+78/4)
+	context.fillStyle = "black";
+	context.fillRect (0, 0, 1000, 800);
+	context.restore();
+
+	for(var p = 0; p < particles.length; p++)
+		{	
+			particles[p].x += particles[p].vx;
+			particles[p].y += particles[p].vy;
+				
+			
+			if (particles[p].y > canvas.height)
+			{
+				particles[p].y = 10;
+				particles[p].x += particles[p].vx;
+				particles[p].y += particles[p].vy;
+			}
+	
+			particles[p].drawRect();
+	
+	
+			
+		}
+
+
+	context.save();	
+	context.font = "bold 58px Arial"
+	context.textAlign = "center";
+	context.fillStyle = "white";
+	context.fillText("You WIN!", canvas.width/2, canvas.height/2+78/4)
 	context.restore();
 
 
@@ -259,4 +363,77 @@ function animate()
 
 	
 }
+
+
+
+function menu() {
+	context.clearRect(0, 0, canvas.width, canvas.height);
+
+	
+
+	context.save();
+	context.fillStyle = "black";
+	context.fillRect (0, 0, 1000, 800);
+	context.restore();
+
+	for(var p = 0; p < particles.length; p++)
+		{	
+			particles[p].x += particles[p].vx;
+			particles[p].y += particles[p].vy;
+				
+			
+			if (particles[p].y > canvas.height)
+			{
+				particles[p].y = 10;
+				particles[p].x += particles[p].vx;
+				particles[p].y += particles[p].vy;
+			}
+	
+			particles[p].drawRect();
+	
+	
+			
+		}
+
+	playbutton.drawRect();
+
+
+
+	context.save();
+	context.fillStyle = "black";
+	context.fillRect (canvas.width/2-95,canvas.height/2/2-75, 200, 150);
+	context.font = "bold 58px Arial"
+	context.textAlign = "center";
+	context.fillStyle = "white";
+	context.fillText("Protogame", canvas.width/2,canvas.height/2/2);
+	context.fillText("Play", canvas.width/2,canvas.height/2);
+	context.restore();
+
+
+	
+	
+
+
+
+
+	if(playbutton.hitTestPoint(mouse))
+		{
+		   if (mouse.pressed)
+			{
+				startGame();
+			}
+			
+			
+		}
+
+
+	
+}
+
+ function startGame()
+ 	{
+
+		state = game;
+	}
+  
 
