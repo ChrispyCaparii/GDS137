@@ -167,7 +167,7 @@ function game()
 		{
 			goal.y = 10000;
 			context.textAlign = "center";
-			context.drawText("You Win!!!", canvas.width/2, canvas.height/2);
+			state = win;
 		}
 		
 	
@@ -229,6 +229,22 @@ function end()
 		context.fillRect(0, canvas.height/2-100,canvas.width, 200);
 		context.fillStyle = "white";
 		context.fillText("You Lose", canvas.width/2, canvas.height/2+78/4)
+	context.restore();
+
+
+
+}
+
+function win()
+{
+
+	context.save();
+		context.fillStyle = "black";
+		context.font = "bold 58px Arial"
+		context.textAlign = "center";
+		context.fillRect(0, canvas.height/2-100,canvas.width, 200);
+		context.fillStyle = "white";
+		context.fillText("You WIN!", canvas.width/2, canvas.height/2+78/4)
 	context.restore();
 
 
