@@ -27,7 +27,17 @@ var player;
 		playbutton.width = 200;
 		playbutton.height = 150;
 		playbutton.color = "black";
+
+
+	var insbutton = new GameObject({x:canvas.width/2, y:canvas.height/2+150})
+		insbutton.width = 350;
+		insbutton.height = 150;
+		insbutton.color = "black";
 	
+	var backbutton = new GameObject({x:150, y:700})
+		backbutton.width = 200;
+		backbutton.height = 150;
+		backbutton.color = "black";
 
 
 		var amount = 25;
@@ -396,6 +406,7 @@ function menu() {
 		}
 
 	playbutton.drawRect();
+	insbutton.drawRect();
 
 
 
@@ -407,6 +418,7 @@ function menu() {
 	context.fillStyle = "white";
 	context.fillText("Protogame", canvas.width/2,canvas.height/2/2);
 	context.fillText("Play", canvas.width/2,canvas.height/2);
+	context.fillText("Instructions", canvas.width/2, canvas.height/2+150);
 	context.restore();
 
 
@@ -427,7 +439,82 @@ function menu() {
 		}
 
 
+		
+	if(insbutton.hitTestPoint(mouse))
+		{
+		   if (mouse.pressed)
+			{
+				startIns();
+			}
+			
+			
+		}
+
+
 	
+}
+
+
+
+
+function ins()
+{
+
+	context.save();
+	context.fillStyle = "black";
+	context.fillRect (0, 0, 1000, 800);
+	context.restore();
+
+	for(var p = 0; p < particles.length; p++)
+		{	
+			particles[p].x += particles[p].vx;
+			particles[p].y += particles[p].vy;
+				
+			
+			if (particles[p].y > canvas.height)
+			{
+				particles[p].y = 10;
+				particles[p].x += particles[p].vx;
+				particles[p].y += particles[p].vy;
+			}
+	
+			particles[p].drawRect();
+	
+	
+			
+		}
+
+		backbutton.drawRect();
+
+
+	context.save();	
+	context.font = "bold 58px Arial"
+	context.textAlign = "center";
+	context.fillStyle = "white";
+	context.fillText("WASD Keys for movement", canvas.width/2, canvas.height/2+78/4)
+	context.fillText("Get the goal", canvas.width/2, canvas.height/2/4)
+	context.fillText("Back", 150, 700)
+	context.restore();
+
+
+
+
+
+
+	if(backbutton.hitTestPoint(mouse))
+		{
+		   if (mouse.pressed)
+			{
+				state = menu;
+			}
+			
+			
+		}
+
+
+
+
+
 }
 
  function startGame()
@@ -435,5 +522,11 @@ function menu() {
 
 		state = game;
 	}
+
+	function startIns()
+	{
+
+	   state = ins;
+   }
   
 
