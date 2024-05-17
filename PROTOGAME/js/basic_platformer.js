@@ -10,17 +10,13 @@ var player;
 
 	canvas = document.getElementById("canvas");
 	context = canvas.getContext("2d");	
-	//canvas.addEventListener("mousemove", track);
-	//canvas.addEventListener("click", startGame);
 
-
-	
-	//var game = animate();
 
 
 	player = new GameObject({x:100, y:canvas.height/2-100});
 		player.width = 50;
 		player.height = 50;
+		player.color = "#1eb616";
 
 
 	var playbutton = new GameObject({x:canvas.width/2, y:canvas.height/2})
@@ -112,6 +108,9 @@ var player;
 
 function game()
 {
+
+	
+
 	if(w && player.canJump && player.vy ==0)
 		{
 			player.canJump = false;
@@ -314,6 +313,10 @@ function end()
 		}
 
 
+		
+		backbutton.drawRect();
+		
+
 	context.save();	
 	context.font = "bold 58px Arial"
 	context.textAlign = "center";
@@ -321,6 +324,26 @@ function end()
 	context.fillText("You LOSE!", canvas.width/2, canvas.height/2+78/4)
 	context.restore();
 
+
+	context.save();	
+	context.textAlign = "center";
+	context.fillStyle = "white";
+	context.font = "bold 58px Arial"
+	context.fillText("Menu", 150, 700)
+	context.restore();
+
+
+
+
+	if(backbutton.hitTestPoint(mouse))
+		{
+		   if (mouse.pressed)
+			{	location.reload();
+				state = menu;
+			}
+			
+			
+		}
 
 
 }
@@ -353,6 +376,7 @@ function win()
 			
 		}
 
+	backbutton.drawRect();
 
 	context.save();	
 	context.font = "bold 58px Arial"
@@ -360,6 +384,28 @@ function win()
 	context.fillStyle = "white";
 	context.fillText("You WIN!", canvas.width/2, canvas.height/2+78/4)
 	context.restore();
+
+
+
+	context.save();	
+	context.textAlign = "center";
+	context.fillStyle = "white";
+	context.font = "bold 58px Arial"
+	context.fillText("Menu", 150, 700)
+	context.restore();
+
+
+
+
+	if(backbutton.hitTestPoint(mouse))
+		{
+		   if (mouse.pressed)
+			{	location.reload();
+				state = menu;
+			}
+			
+			
+		}
 
 
 
@@ -488,16 +534,19 @@ function ins()
 
 
 	context.save();	
-	context.font = "bold 58px Arial"
+	context.font = "bold 40px Arial"
 	context.textAlign = "center";
 	context.fillStyle = "white";
-	context.fillText("WASD Keys for movement", canvas.width/2, canvas.height/2+78/4)
-	context.fillText("Get the goal", canvas.width/2, canvas.height/2/4)
+	context.fillText("Get the bright blue ball", canvas.width/2, canvas.height/2/4)
+	context.fillText("W to Jump", canvas.width/2, canvas.height/2/6 + 100)
+	context.fillText("A and D to walk", canvas.width/2, canvas.height/2/6 + 150)
+	context.fillText("Don't let the enemy touch you", canvas.width/2, canvas.height/2/6 + 250)
+	context.fillText("Stomp on enemy to make him swim with the fishes", canvas.width/2, canvas.height/2/6 + 300)
+	context.fillText("Use the portals to teleport (one-way only)", canvas.width/2, canvas.height/2/6 + 400)
+	context.font = "bold 58px Arial"
 	context.fillText("Back", 150, 700)
 	context.restore();
-
-
-
+	
 
 
 
